@@ -1,16 +1,9 @@
 import React, { memo } from 'react'
+import { useAsync } from 'react-async-hook'
+import { ActivityIndicator, Image, PixelRatio, StyleSheet, Text, View } from 'react-native'
+import { useContext } from './CountryContext'
 import { Emoji } from './Emoji'
 import { CountryCode } from './types'
-import { useContext } from './CountryContext'
-import { useAsync } from 'react-async-hook'
-import {
-  Image,
-  StyleSheet,
-  PixelRatio,
-  Text,
-  View,
-  ActivityIndicator,
-} from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +25,7 @@ const styles = StyleSheet.create({
     height: 19,
     borderWidth: 1 / PixelRatio.get(),
     opacity: 0.8,
+    marginBottom: 5
   },
 })
 
