@@ -6,8 +6,6 @@ const styles = StyleSheet.create({
   input: {
     height: 48,
     width: '90%',
-    borderRadius: 10,
-    backgroundColor: '#14141414',
     padding: 10,
     ...Platform.select({
       web: {

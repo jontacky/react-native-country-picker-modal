@@ -1,14 +1,19 @@
 import React, { ReactNode } from 'react'
 import { ImageSourcePropType, ImageStyle, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native'
+import Icon from "react-native-dynamic-vector-icons"
 import CloseButton from './CloseButton'
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center'
   }, 
   search: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: "center",
+    backgroundColor: "#14141414",
+    borderRadius: 10,
+    paddingLeft: 10
 },
 })
 
@@ -49,7 +54,12 @@ export const HeaderModal = (props: HeaderModalProps) => {
         onPress={onClose}
       />}
       <View style={styles.search}>
-        {withFilter && renderFilter(props)}
+        {withFilter &&
+        <>
+        <Icon name="search" color="#14141414" type="MaterialCommunityIcon"/>
+         {renderFilter(props)}
+         </>
+        }
       </View>
     </View>
   )
