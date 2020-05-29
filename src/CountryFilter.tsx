@@ -1,11 +1,14 @@
 import React from 'react'
-import { TextInput, StyleSheet, TextInputProps, Platform } from 'react-native'
+import { Platform, StyleSheet, TextInput, TextInputProps } from 'react-native'
 import { useTheme } from './CountryTheme'
 
 const styles = StyleSheet.create({
   input: {
     height: 48,
-    width: '70%',
+    width: '90%',
+    borderRadius: 10,
+    backgroundColor: '#14141414',
+    padding: 10,
     ...Platform.select({
       web: {
         outlineWidth: 0,
@@ -41,5 +44,5 @@ export const CountryFilter = (props: CountryFilterProps) => {
 
 CountryFilter.defaultProps = {
   autoFocus: false,
-  placeholder: 'Enter country name'
+  placeholder: 'Search for Country'
 }

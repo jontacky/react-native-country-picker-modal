@@ -1,17 +1,11 @@
 import React, { ReactNode } from 'react'
-import { FlagButtonProps } from './FlagButton'
-import {
-  TranslationLanguageCode,
-  CountryCode,
-  Country,
-  Region,
-  Subregion,
-} from './types'
+import { FlatListProps, ModalProps, StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { CountryProvider, DEFAULT_COUNTRY_CONTEXT } from './CountryContext'
-import { ThemeProvider, DEFAULT_THEME, Theme } from './CountryTheme'
 import { CountryFilterProps } from './CountryFilter'
-import { StyleProp, ViewStyle, ModalProps, FlatListProps } from 'react-native'
 import { CountryPicker } from './CountryPicker'
+import { DEFAULT_THEME, Theme, ThemeProvider } from './CountryTheme'
+import { FlagButtonProps } from './FlagButton'
+import { Country, CountryCode, Region, Subregion, TranslationLanguageCode } from './types'
 
 interface Props {
   countryCode: CountryCode
@@ -36,6 +30,9 @@ interface Props {
   withFilter?: boolean
   withFlag?: boolean
   withModal?: boolean
+  withTitle?: boolean,
+  title?: string,
+  titleStyle?: StyleProp<TextStyle>,
   disableNativeModal?: boolean
   visible?: boolean
   containerButtonStyle?: StyleProp<ViewStyle>
@@ -62,16 +59,14 @@ Main.defaultProps = {
 }
 
 export default Main
-export {
-  getCountriesAsync as getAllCountries,
-  getCountryCallingCodeAsync as getCallingCode,
-} from './CountryService'
-export { CountryModal } from './CountryModal'
-export { DARK_THEME, DEFAULT_THEME } from './CountryTheme'
 export { CountryFilter } from './CountryFilter'
 export { CountryList } from './CountryList'
-export { FlagButton } from './FlagButton'
-export { Flag } from './Flag'
-export { HeaderModal } from './HeaderModal'
+export { CountryModal } from './CountryModal'
 export { CountryModalProvider } from './CountryModalProvider'
+export { getCountriesAsync as getAllCountries, getCountryCallingCodeAsync as getCallingCode } from './CountryService'
+export { DARK_THEME, DEFAULT_THEME } from './CountryTheme'
+export { Flag } from './Flag'
+export { FlagButton } from './FlagButton'
+export { HeaderModal } from './HeaderModal'
 export * from './types'
+

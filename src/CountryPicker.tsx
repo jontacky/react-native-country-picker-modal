@@ -1,19 +1,12 @@
-import React, { ReactNode, useState, useEffect } from 'react'
-import {
-  ModalProps,
-  FlatListProps,
-  StyleProp,
-  ViewStyle,
-  ImageSourcePropType,
-  ImageStyle,
-} from 'react-native'
+import React, { ReactNode, useEffect, useState } from 'react'
+import { FlatListProps, ImageSourcePropType, ImageStyle, ModalProps, StyleProp, TextStyle, ViewStyle } from 'react-native'
+import { useContext } from './CountryContext'
+import { CountryFilter, CountryFilterProps } from './CountryFilter'
+import { CountryList } from './CountryList'
 import { CountryModal } from './CountryModal'
+import { FlagButton } from './FlagButton'
 import { HeaderModal } from './HeaderModal'
 import { Country, CountryCode, FlagType, Region, Subregion } from './types'
-import { CountryFilter, CountryFilterProps } from './CountryFilter'
-import { FlagButton } from './FlagButton'
-import { useContext } from './CountryContext'
-import { CountryList } from './CountryList'
 
 interface State {
   visible: boolean
@@ -61,6 +54,9 @@ interface CountryPickerProps {
   withCurrency?: boolean
   withFlag?: boolean
   withModal?: boolean
+  withTitle?: boolean,
+  title?: string,
+  titleStyle?: StyleProp<TextStyle>,
   disableNativeModal?: boolean
   visible?: boolean
   placeholder?: string
@@ -99,6 +95,9 @@ export const CountryPicker = (props: CountryPickerProps) => {
     withCurrency,
     withFlag,
     withModal,
+    withTitle,
+    title,
+    titleStyle,
     disableNativeModal,
     withFlagButton,
     onClose: handleClose,
@@ -181,6 +180,9 @@ export const CountryPicker = (props: CountryPickerProps) => {
       >
         <HeaderModal
           {...{
+            withTitle,
+            title,
+            titleStyle,
             withFilter,
             onClose,
             closeButtonImage,
