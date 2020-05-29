@@ -127,6 +127,9 @@ export default function App() {
 - `withFilter?`: boolean
 - `withFlag?`: boolean
 - `withModal?`: boolean
+- `withTitle?`: boolean,
+- `title?`: string,
+- `titleStyle?`: StyleProp<TextStyle>,
 - `visible?`: boolean
 - `containerButtonStyle?`: `StyleProp<ViewStyle>`
 - `renderFlagButton?`(props: (FlagButton['props'])): ReactNode ([FlagButton props](https://github.com/xcarpentier/react-native-country-picker-modal/blob/master/src/FlagButton.tsx#L73))
