@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     width: 25,
     height: 19,
     borderWidth: 1 / PixelRatio.get(),
-    opacity: 0.8,
     marginBottom: 5
   },
 })
