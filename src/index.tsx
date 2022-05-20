@@ -8,16 +8,19 @@ import { FlagButtonProps } from './FlagButton'
 import { Country, CountryCode, Region, Subregion, TranslationLanguageCode } from './types'
 
 interface Props {
+  allowFontScaling?: boolean
   countryCode: CountryCode
   region?: Region
   subregion?: Subregion
   countryCodes?: CountryCode[]
   excludeCountries?: CountryCode[]
+  preferredCountries?: CountryCode[]
   theme?: Theme
   translation?: TranslationLanguageCode
   modalProps?: ModalProps
   filterProps?: CountryFilterProps
   flatListProps?: FlatListProps<Country>
+  placeholder?: string
   withAlphaFilter?: boolean
   withCallingCode?: boolean
   withCurrency?: boolean
