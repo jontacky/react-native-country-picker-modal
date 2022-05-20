@@ -34,11 +34,13 @@ const renderFilter = (
   )
 
 interface CountryPickerProps {
+  allowFontScaling?: boolean
   countryCode?: CountryCode
   region?: Region
   subregion?: Subregion
   countryCodes?: CountryCode[]
   excludeCountries?: CountryCode[]
+  preferredCountries?: CountryCode[]
   modalProps?: ModalProps
   filterProps?: CountryFilterProps
   flatListProps?: FlatListProps<Country>
@@ -73,6 +75,7 @@ interface CountryPickerProps {
 
 export const CountryPicker = (props: CountryPickerProps) => {
   const {
+    allowFontScaling,
     countryCode,
     region,
     subregion,
@@ -107,6 +110,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
     closeButtonImageStyle,
     excludeCountries,
     placeholder,
+    preferredCountries,
   } = props
   const [state, setState] = useState<State>({
     visible: props.visible || false,
@@ -135,6 +139,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
       handleClose()
     }
   }
+
   const setFilter = (filter: string) => setState({ ...state, filter })
   const setCountries = (countries: Country[]) =>
     setState({ ...state, countries })
@@ -145,6 +150,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
   const onFocus = () => setState({ ...state, filterFocus: true })
   const onBlur = () => setState({ ...state, filterFocus: false })
   const flagProp = {
+    allowFontScaling,
     countryCode,
     withEmoji,
     withCountryNameButton,
@@ -158,6 +164,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
   }
 
   useEffect(() => {
+    const cancel = false
     getCountriesAsync(
       withEmoji ? FlagType.EMOJI : FlagType.FLAT,
       translation,
@@ -165,9 +172,15 @@ export const CountryPicker = (props: CountryPickerProps) => {
       subregion,
       countryCodes,
       excludeCountries,
+      preferredCountries,
+      withAlphaFilter,
     )
-      .then(setCountries)
+      .then(countries => cancel ? null : setCountries(countries))
       .catch(console.warn)
+
+    //   cancel = true
+    
+    // return cancel
   }, [translation, withEmoji])
 
   return (
@@ -193,6 +206,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
           renderFilter={(props: CountryFilter['props']) =>
             renderFilter({
               ...props,
+              allowFontScaling,
               renderCountryFilter,
               onChangeText: setFilter,
               value: filter,
@@ -227,4 +241,5 @@ CountryPicker.defaultProps = {
   withAlphaFilter: false,
   withCallingCode: false,
   placeholder: 'Select Country',
+  allowFontScaling: true,
 }
